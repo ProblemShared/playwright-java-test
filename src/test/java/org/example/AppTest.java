@@ -1,14 +1,18 @@
 package org.example;
 
 import com.microsoft.playwright.*;
+import org.junit.jupiter.api.Test;
 
-public class App {
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AppTest {
+    @Test
+    public void testPageTitle() {
         try (Playwright playwright = Playwright.create()) {
             Browser browser = playwright.chromium().launch();
             Page page = browser.newPage();
             page.navigate("https://playwright.dev");
-            System.out.println(page.title());
+            assertEquals("Playwright", page.title());
         }
     }
 }
